@@ -1,0 +1,8 @@
+{% extends 'IntegrationTestBundle::layout.html.twig' %}
+
+{% block content %}
+<div id="step-number">{{ flow.getCurrentStepNumber() }}</div>
+<div id="form-data">{{ formData | json_encode }}</div>
+<div id="step-list">{% include 'CraueFormFlowBundle:FormFlow:stepList.html.twig' %}</div>
+{% include 'IntegrationTestBundle::' ~ (hasFormStart() ? 'form.html.twig' : 'form_legacy.html.twig') with {'form': form, 'flow': flow} only %}
+{% endblock %}

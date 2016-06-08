@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block title %}SharEDITor - 关注大数据技术{% endblock title %}
+
+{% block body %}
+
+    <div class="row jumbotron">
+        <div class="col-md-1 col-xs-1"></div>
+        <div class="col-md-10 col-xs-10"><h1>Welcome Big Data ITors!</h1></div>
+        <div class="col-md-1 col-xs-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1 col-xs-1"></div>
+
+        {% for subject in subjects %}
+            <div class="col-sm-2 col-xs-12">
+                <a href="{{ path('blog_list', {'subjectId':subject.id}) }}" class="thumbnail">
+                    <img src="{{ subject.photo }}" alt="{{ subject.name }}">
+
+                    <div class="caption">
+                        <h3>{{ subject.name }}({{ blogcounts[subject.id] }})</h3>
+
+                        <p>{{ subject.introduce }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+
+        <div class="col-sm-1 col-xs-1"></div>
+    </div>
+
+    <br />
+    <br />
+
+
+{% endblock body %}

@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+
+{% block title %}最热点最热门最优秀的排名最靠前的有关大数据,机器学习,深度学习,数据挖掘,检索技术,人工智能以及创业等微信公众号和订阅号文章{% endblock title %}
+
+{% block logo %}
+    <div class="row bg-primary">
+        <div class="col-sm-1 col-xs-1"></div>
+        <div class="col-sm-8 col-xs-10">
+            <h1><a href="{{ path('homepage') }}" style="text-decoration: none;color: white;">SharEDITor</a>
+            </h1>
+            <h5>大数据相关微信公众号文章精选</h5>
+        </div>
+        <div class="col-sm-3 col-xs-1">
+            <form action="{{ path('blog_search') }}" style="margin-top: 10px;">
+                <input type="search" name="q" placeholder="搜文章" maxlength="200" style="background-color: transparent;">
+            </form>
+        </div>
+    </div>
+{% endblock logo %}
+
+{% block body %}
+
+    <nav class="navbar navbar-default">
+        <div class="col-sm-1 col-xs-1"></div>
+        <div class="col-sm-1 col-xs-1">
+            <h4><a href="{{ path('favorite_home') }}">回到首页</a></h4>
+        </div>
+        <div class="col-sm-1 col-xs-1">
+            <h4><a href="{{ path('favorite_categorylist', {'category':'技术文章'}) }}">技术文章</a></h4>
+        </div>
+        <div class="col-sm-1 col-xs-1">
+            <h4><a href="{{ path('favorite_categorylist', {'category':'机器学习'}) }}">机器学习</a></h4>
+        </div>
+        <div class="col-sm-1 col-xs-1">
+            <h4><a href="{{ path('favorite_categorylist', {'category':'数学知识'}) }}">数学知识</a></h4>
+        </div>
+        <div class="col-sm-1 col-xs-1">
+            <h4><a href="{{ path('favorite_categorylist', {'category':'新闻资讯'}) }}">新闻资讯</a></h4>
+        </div>
+        <div class="col-sm-1 col-xs-1">
+            <h4><a href="{{ path('favorite_categorylist', {'category':'鸡汤文章'}) }}">鸡汤文章</a></h4>
+        </div>
+        <div class="col-sm-1 col-xs-1"></div>
+    </nav>
+
+    {% block inbody %}
+    {% endblock inbody %}
+
+{% endblock body %}

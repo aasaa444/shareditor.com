@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>{% block title %}SharEDITor - 关注大数据技术{% endblock title %}</title>
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    {% if app.request.host != 'localhost' %}
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?ec8e80cb5a0c012024fffd91e3614edb";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    {% endif %}
+
+    {% block head %}
+    {% endblock head %}
+
+</head>
+<body>
+
+<!--推送百度url-->
+{% if app.request.host != 'localhost' %}
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-78493845-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+    
+{% endif %}
+
+{% block logo %}
+<div class="row bg-primary">
+    <div class="col-sm-1 col-xs-1"></div>
+    <div class="col-sm-8 col-xs-10"><h1><a href="{{ path('homepage') }}" style="text-decoration: none;color: white;">SharEDITor</a></h1></div>
+    <div class="col-sm-3 col-xs-1">
+        <form action="{{ path('blog_search') }}" style="margin-top: 10px;">
+            <input type="search" name="q" placeholder="搜文章" maxlength="200" style="background-color: transparent;">
+        </form>
+    </div>
+</div>
+{% endblock logo %}
+{% block body %}
+{% endblock body %}
+
+<br/>
+<br/>
+
+<div class="row navbar navbar-inverse" style="margin-bottom: 0;">
+    <div class="row">
+        <div class="col-sm-1 col-xs-1"></div>
+        <div class="col-sm-4 col-xs-4">
+            <h4 style="color: #FFFFFF; border-bottom: 1px solid #695d69; padding-bottom: 10px; margin-top: 30px;">
+                最新文章</h4>
+            {% for article in latestblogs %}
+
+                <div class="row" style="margin: 10px;margin-left: 0; overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                    <a style="color: #959595;"
+                       href="{{ path('blog_show', {'blogId':article.id}) }}">{{ article.title }}</a>
+                </div>
+
+            {% endfor %}
+            <br/>
+        </div>
+
+        <div class="col-sm-4 col-xs-4">
+            <h4 style="color: #FFFFFF; border-bottom: 1px solid #695d69; padding-bottom: 10px; margin-top: 30px;">
+                为你推荐</h4>
+            {% for article in recommends %}
+
+                <div class="row" style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                    <a style="color: #959595;"
+                       href="{{ path('blog_show', {'blogId':article.id}) }}">{{ article.title }}</a>
+                </div>
+
+            {% endfor %}
+            <br/>
+        </div>
+
+        <div class="col-sm-1 col-xs-1">
+            <h4 style="color: #FFFFFF; border-bottom: 1px solid #695d69; padding-bottom: 10px; margin-top: 30px;">
+                热门搜索</h4>
+
+            <div class="row"
+                 style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                <a style="color: #959595;" href="{{ path('blog_search', {'q':'全栈技术'}) }}">全栈技术</a>
+                <a style="color: #959595;" href="{{ path('blog_search', {'q':'php'}) }}">php</a>
+                <a style="color: #959595;" href="{{ path('blog_search', {'q':'前端开发'}) }}">前端开发</a>
+            </div>
+            <div class="row"
+                 style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                <a style="color: #959595;" href="{{ path('blog_search', {'q':'大数据'}) }}">大数据</a>
+                <a style="color: #959595;" href="{{ path('blog_search', {'q':'数据挖掘'}) }}">数据挖掘</a>
+                <a style="color: #959595;" href="{{ path('blog_search', {'q':'分析'}) }}">分析</a>
+            </div>
+            <div class="row"
+                 style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                <a style="color: #959595;" href="{{ path('blog_search', {'q':'机器学习'}) }}">机器学习</a>
+                <a style="color: #959595;" href="{{ path('blog_search', {'q':'深度学习'}) }}">深度学习</a>
+                <a style="color: #959595;" href="{{ path('blog_search', {'q':'统计'}) }}">统计</a>
+            </div>
+            <div class="row"
+                 style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                <a style="color: #959595;" href="{{ path('blog_search', {'q':'数学'}) }}">数学</a>
+                <a style="color: #959595;" href="{{ path('blog_search', {'q':'算法'}) }}">算法</a>
+                <a style="color: #959595;" href="{{ path('blog_search', {'q':'octave'}) }}">octave</a>
+            </div>
+            <div class="row"
+                 style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                <a style="color: #959595;" href="{{ path('blog_search', {'q':'教程'}) }}">教程</a>
+                <a style="color: #959595;" href="{{ path('blog_search', {'q':'医院'}) }}">医院</a>
+                <a style="color: #959595;" href="{{ path('blog_search', {'q':'搜索引擎'}) }}">搜索引擎</a>
+            </div>
+
+            <br/>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-xs-12 text-center" style="color: #959595;margin-bottom: 10px;">
+            {% if app.request.host != 'localhost' %}
+                <script type="text/javascript">
+                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1258402137'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258402137' type='text/javascript'%3E%3C/script%3E"));
+                </script>
+            {% endif %}
+            Copyright © <a href="{{ path('homepage') }}">shareditor.com</a> | 京ICP备13047771号
+        </div>
+    </div>
+</div>
+</body>
+</html>

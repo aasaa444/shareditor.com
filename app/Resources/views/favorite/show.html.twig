@@ -1,0 +1,45 @@
+{% extends ":favorite:base.html.twig" %}
+
+{% block head %}
+    {% if is_original == true %}
+    <meta property="og:type"content="blog" />
+    <meta property="blog:published_time" content="{{ blogpost.createTimeStr|date("c") }}"/>
+    <meta property="blog:author" content="闯王来了要纳粮"/>
+    <meta property="blog:published_first" content="SharEDITor, {{ app.request.uri }}" />
+    {% endif %}
+    {#<link rel="stylesheet" href="/bundles/ivoryckeditor/plugins/codesnippet/lib/highlight/styles/atelier-dune.dark.css">#}
+    <link rel="stylesheet" href="/bundles/ivoryckeditor/plugins/codesnippet/lib/highlight/styles/ir_black.css">
+    <script src="/bundles/ivoryckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+{% endblock head %}
+
+{% block title %}{{ blogpost.title }} - 最热点最热门最优秀的排名最靠前的有关大数据,机器学习,深度学习,数据挖掘,检索技术,人工智能以及创业等微信公众号和订阅号文章{% endblock title %}
+
+{% block inbody %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-xs-1"></div>
+            <div class="col-sm-6 col-xs-10">
+                <div class="row">
+                    <h1>{{ blogpost.title }}</h1>
+                </div>
+                <div class="row">
+                    <a class="btn btn-info btn-xs" href="{{ path('favorite_sourcelist', {'source':blogpost.source}) }}">
+                        转自:{{ blogpost.source }}
+                    </a>
+                    <small>发表于 {{ blogpost.createTimeStr }}</small>
+                </div>
+
+                <div class="row">
+                    <hr/>
+                </div>
+                <div class="row">
+                    {{ blogpost.content|raw }}
+                </div>
+            </div>
+            <div class="col-sm-3 col-xs-1"></div>
+        </div>
+    </div>
+
+{% endblock inbody %}

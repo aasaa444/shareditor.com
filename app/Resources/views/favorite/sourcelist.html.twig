@@ -1,0 +1,67 @@
+{% extends ":favorite:base.html.twig" %}
+
+{% block title %}{{ source }} - 最热点最热门最优秀的排名最靠前的有关大数据,机器学习,深度学习,数据挖掘,检索技术,人工智能以及创业等微信公众号和订阅号文章{% endblock title %}
+
+{% block inbody %}
+
+<div class="row">
+    <div class="col-sm-3 col-xs-1"></div>
+    <div class="col-sm-6 col-xs-10">
+
+        <br />
+        {% for article in pagination %}
+            <div style="background-color: whitesmoke; padding-left: 30px;padding-right: 30px;padding-top: 10px;">
+                <div class="row">
+                    <div class="col-sm-1 col-xs-2"></div>
+                    <div class="col-sm-7 col-xs-12">
+                        <div class="row">
+                            <h3><a href="{{ path('favorite_show', {'pageid':article.id}) }}" target="_blank">{{ article.title }}</a></h3>
+                        </div>
+                        <div class="row">
+                            <a class="btn btn-info btn-xs" href="{{ path('favorite_sourcelist', {'source':article.source}) }}">
+                                {{ article.source }}
+                            </a>
+                            {% if article.isTec == 1 %}
+                                <a class="btn btn-info btn-xs" href="{{ path('favorite_categorylist', {'category':'技术文章'}) }}">
+                                    技术文章
+                                </a>
+                            {% elseif article.isSoup == 1 %}
+                                <a class="btn btn-info btn-xs" href="{{ path('favorite_categorylist', {'category':'鸡汤文章'}) }}">
+                                    鸡汤文章
+                                </a>
+                            {% elseif article.isML == 1 %}
+                                <a class="btn btn-info btn-xs" href="{{ path('favorite_categorylist', {'category':'机器学习'}) }}">
+                                    机器学习
+                                </a>
+                            {% elseif article.isMath == 1 %}
+                                <a class="btn btn-info btn-xs" href="{{ path('favorite_categorylist', {'category':'数学知识'}) }}">
+                                    数学知识
+                                </a>
+                            {% elseif article.isNews == 1 %}
+                                <a class="btn btn-info btn-xs" href="{{ path('favorite_categorylist', {'category':'新闻资讯'}) }}">
+                                    新闻资讯
+                                </a>
+                            {% endif %}
+
+                            <small>发表于 {{ article.createTimeStr }}</small>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <small>{{ article.abstract }}</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+                <br />
+            </div>
+            <br />
+        {% endfor %}
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    </div>
+    <div class="col-sm-3 col-xs-1"></div>
+</div>
+
+{% endblock inbody %}

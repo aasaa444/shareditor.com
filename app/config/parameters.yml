@@ -1,0 +1,14 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: sharenote2.0
+    database_user: lichuang
+    database_password: qwerty
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: 66505949ce34194a91f840e7e0b2e1e2276d7df0
+sonata_admin:
+    title: 后台管理系统
