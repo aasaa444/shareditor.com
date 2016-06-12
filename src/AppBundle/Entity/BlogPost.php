@@ -59,6 +59,29 @@ class BlogPost
     private $createTime;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="pv", type="integer", options={"default": "0"})
+     */
+    private $pv;
+
+    /**
+     * @return mixed
+     */
+    public function getPv()
+    {
+        return $this->pv;
+    }
+
+    /**
+     * @param mixed $pv
+     */
+    public function setPv($pv)
+    {
+        $this->pv = $pv;
+    }
+
+    /**
      * @return \DateTime
      */
     public function getCreateTime()
