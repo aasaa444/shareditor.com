@@ -69,7 +69,7 @@
                     <div class="row">
                         <div class="col-sm-6 col-xs-6">
                             <span style="color:#aaaaaa;">前一篇:</span>
-                            {% if nextblog != null %}
+                            {% if lastblog != null %}
                                 <a href="{{ path('blog_show', {'blogId':lastblog.id}) }}">{{ lastblog.title }}</a>
                             {% else %}
                                 <span style="color:#aaaaaa;">这是第一篇</span>
@@ -79,7 +79,7 @@
                         <div class="text-right col-sm-6 col-xs-6">
                             <span style="color:#aaaaaa;">后一篇:</span>
                             {% if nextblog != null %}
-                                <a href="{{ path('blog_show', {'blogId':nextblog.id}) }}">{{ lastblog.title }}</a>
+                                <a href="{{ path('blog_show', {'blogId':nextblog.id}) }}">{{ nextblog.title }}</a>
                             {% else %}
                                 <span style="color:#aaaaaa;">没有了</span>
                             {% endif %}
