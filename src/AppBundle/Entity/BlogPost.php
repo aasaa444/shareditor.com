@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class BlogPost
 {
+    function __construct()
+    {
+        $this->pv = 0;
+    }
+
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="blogPosts")
      */
