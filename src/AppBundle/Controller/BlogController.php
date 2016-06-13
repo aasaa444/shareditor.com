@@ -45,13 +45,21 @@ class BlogController extends Controller
     {
         $blogId = $request->get('blogId');
         $this->blogPostRepository = $this->getDoctrine()->getRepository('AppBundle:BlogPost');
-        return $this->render('blog/show.html.twig', array('blogpost' => $this->blogPostRepository->find($blogId),
-            'latestblogs' => BlogController::getLatestBlogs($this),
-            'recommends' => BlogController::getRecommends($this),
-            'is_original' => true,
-            'lastblog' => $this->findLastBlog($blogId),
-            'nextblog' => $this->findNextBlog($blogId)
-        ));
+        $blogPost = $this->blogPostRepository->find($blogId);
+        if (!empty($blogPost)) {
+            return $this->render('blog/show.html.twig', array('blogpost' => $blogPost,
+                'latestblogs' => BlogController::getLatestBlogs($this),
+                'recommends' => BlogController::getRecommends($this),
+                'is_original' => true,
+                'lastblog' => $this->findLastBlog($blogId),
+                'nextblog' => $this->findNextBlog($blogId)
+            ));
+        } else {
+            return $this->render('blog/nofound.html.twig', array(
+                'latestblogs' => BlogController::getLatestBlogs($this),
+                'recommends' => BlogController::getRecommends($this)
+            ));
+        }
     }
 
     private function findLastBlog($blogId)
