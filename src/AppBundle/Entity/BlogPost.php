@@ -222,7 +222,7 @@ class BlogPost
 
     public function getCreateDate()
     {
-        $newDate = $this->createTime->format('Y-m-d');
+        $newDate = $this->createTime->format('m-d');
         return $newDate;
     }
 }

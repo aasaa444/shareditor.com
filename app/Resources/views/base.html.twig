@@ -93,9 +93,9 @@
             {% for article in latestblogs %}
 
                 <div class="row" style="margin: 10px;margin-left: 0; overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                    <span style="color: #959595;">({{ article.createDate }})</span>
                     <a style="color: #959595;"
                        href="{{ path('blog_show', {'blogId':article.id}) }}">{{ article.title }}</a>
-                    <span style="color: #959595;">({{ article.createDate }})</span>
                 </div>
 
             {% endfor %}
