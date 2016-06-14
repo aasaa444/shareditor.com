@@ -38,7 +38,7 @@ class BlogController extends Controller
         return $this->render('blog/list.html.twig', array('pagination' => $pagination,
             'subject' => $subject,
             'latestblogs' => BlogController::getLatestBlogs($this),
-            'recommends' => BlogController::getRecommends($this)));
+            'tophotblogs' => BlogController::getTopHotBlogs($this)));
     }
 
     public function showAction(Request $request)
@@ -49,7 +49,7 @@ class BlogController extends Controller
         if (!empty($blogPost)) {
             return $this->render('blog/show.html.twig', array('blogpost' => $blogPost,
                 'latestblogs' => BlogController::getLatestBlogs($this),
-                'recommends' => BlogController::getRecommends($this),
+                'tophotblogs' => BlogController::getTopHotBlogs($this),
                 'is_original' => true,
                 'lastblog' => $this->findLastBlog($blogId),
                 'nextblog' => $this->findNextBlog($blogId)
@@ -57,7 +57,7 @@ class BlogController extends Controller
         } else {
             return $this->render('blog/nofound.html.twig', array(
                 'latestblogs' => BlogController::getLatestBlogs($this),
-                'recommends' => BlogController::getRecommends($this)
+                'tophotblogs' => BlogController::getTopHotBlogs($this)
             ));
         }
     }
@@ -105,7 +105,7 @@ class BlogController extends Controller
         return $this->render('blog/search.html.twig', array('pagination' => $pagination,
             'query' => $query,
             'latestblogs' => BlogController::getLatestBlogs($this),
-            'recommends' => BlogController::getRecommends($this)));
+            'tophotblogs' => BlogController::getTopHotBlogs($this)));
     }
 
     public static function getLatestBlogs($contoller)
@@ -115,17 +115,11 @@ class BlogController extends Controller
         return $blogposts;
     }
 
-    public static function getRecommends($contoller)
+    public static function getTopHotBlogs($contoller)
     {
         $blogPostRepository = $contoller->getDoctrine()->getRepository('AppBundle:BlogPost');
-        $allrecommends = $blogPostRepository->findBy(array(), array('createTime' => 'DESC'), 100);
-
-        $randList = BlogController::genRandList(0, sizeof($allrecommends), 5);
-        $recommends = array();
-        foreach ($randList as $index => $value) {
-            $recommends[] = $allrecommends[$index];
-        }
-        return $recommends;
+        $tophotblogs = $blogPostRepository->findBy(array(), array('pv' => 'DESC'), 5);
+        return $tophotblogs;
     }
 
     public static function genRandList($min, $max, $num)

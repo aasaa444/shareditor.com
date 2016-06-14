@@ -35,7 +35,7 @@ class FavoriteController extends Controller
         return $this->render('favorite/index.html.twig', array(
             'crawl_pages_array' => $crawlPagesArray,
             'latestblogs' => BlogController::getLatestBlogs($this),
-            'recommends' => BlogController::getRecommends($this),
+            'tophotblogs' => BlogController::getTopHotBlogs($this),
         ));
     }
 
@@ -56,7 +56,7 @@ class FavoriteController extends Controller
         return $this->render('favorite/sourcelist.html.twig', array('pagination' => $pagination,
             'source' => $source,
             'latestblogs' => BlogController::getLatestBlogs($this),
-            'recommends' => BlogController::getRecommends($this)));
+            'tophotblogs' => BlogController::getTopHotBlogs($this)));
     }
 
     public function categorylistAction(Request $request)
@@ -88,7 +88,7 @@ class FavoriteController extends Controller
         return $this->render('favorite/categorylist.html.twig', array('pagination' => $pagination,
             'category' => $category,
             'latestblogs' => BlogController::getLatestBlogs($this),
-            'recommends' => BlogController::getRecommends($this)));
+            'tophotblogs' => BlogController::getTopHotBlogs($this)));
     }
 
     public function showAction(Request $request)
@@ -97,7 +97,7 @@ class FavoriteController extends Controller
         $this->crawlPageRepository = $this->getDoctrine()->getRepository('AppBundle:CrawlPage');
         return $this->render('favorite/show.html.twig', array('blogpost' => $this->crawlPageRepository->find($crawlPageId),
             'latestblogs' => BlogController::getLatestBlogs($this),
-            'recommends' => BlogController::getRecommends($this),
+            'tophotblogs' => BlogController::getTopHotBlogs($this),
             'is_original' => false
         ));
     }

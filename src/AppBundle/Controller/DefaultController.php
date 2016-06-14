@@ -34,7 +34,7 @@ class DefaultController extends Controller
             'subjects' => $subjects,
             'blogcounts' => $this->getSubjectBlogCountMap($subjects),
             'latestblogs' => BlogController::getLatestBlogs($this),
-            'recommends' => BlogController::getRecommends($this),
+            'tophotblogs' => BlogController::getTopHotBlogs($this),
         ));
     }
 
