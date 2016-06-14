@@ -87,7 +87,7 @@
 <div class="row navbar navbar-inverse" style="margin-bottom: 0;">
     <div class="row">
         <div class="col-sm-1 col-xs-1"></div>
-        <div class="col-sm-4 col-xs-4">
+        <div class="col-sm-5 col-xs-5">
             <h4 style="color: #FFFFFF; border-bottom: 1px solid #695d69; padding-bottom: 10px; margin-top: 30px;">
                 最新文章</h4>
             {% for article in latestblogs %}
@@ -95,13 +95,14 @@
                 <div class="row" style="margin: 10px;margin-left: 0; overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
                     <a style="color: #959595;"
                        href="{{ path('blog_show', {'blogId':article.id}) }}">{{ article.title }}</a>
+                    <span style="color: #959595;">({{ article.createDate }})</span>
                 </div>
 
             {% endfor %}
             <br/>
         </div>
 
-        <div class="col-sm-4 col-xs-4">
+        <div class="col-sm-5 col-xs-5">
             <h4 style="color: #FFFFFF; border-bottom: 1px solid #695d69; padding-bottom: 10px; margin-top: 30px;">
                 最热文章</h4>
             {% for article in tophotblogs %}
@@ -116,43 +117,43 @@
             <br/>
         </div>
 
-        <div class="col-sm-1 col-xs-1">
-            <h4 style="color: #FFFFFF; border-bottom: 1px solid #695d69; padding-bottom: 10px; margin-top: 30px;">
-                热门搜索</h4>
+        {#<div class="col-sm-1 col-xs-1">#}
+            {#<h4 style="color: #FFFFFF; border-bottom: 1px solid #695d69; padding-bottom: 10px; margin-top: 30px;">#}
+                {#热门搜索</h4>#}
 
-            <div class="row"
-                 style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
-                <a style="color: #959595;" href="{{ path('blog_search', {'q':'全栈技术'}) }}">全栈技术</a>
-                <a style="color: #959595;" href="{{ path('blog_search', {'q':'php'}) }}">php</a>
-                <a style="color: #959595;" href="{{ path('blog_search', {'q':'前端开发'}) }}">前端开发</a>
-            </div>
-            <div class="row"
-                 style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
-                <a style="color: #959595;" href="{{ path('blog_search', {'q':'大数据'}) }}">大数据</a>
-                <a style="color: #959595;" href="{{ path('blog_search', {'q':'数据挖掘'}) }}">数据挖掘</a>
-                <a style="color: #959595;" href="{{ path('blog_search', {'q':'分析'}) }}">分析</a>
-            </div>
-            <div class="row"
-                 style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
-                <a style="color: #959595;" href="{{ path('blog_search', {'q':'机器学习'}) }}">机器学习</a>
-                <a style="color: #959595;" href="{{ path('blog_search', {'q':'深度学习'}) }}">深度学习</a>
-                <a style="color: #959595;" href="{{ path('blog_search', {'q':'统计'}) }}">统计</a>
-            </div>
-            <div class="row"
-                 style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
-                <a style="color: #959595;" href="{{ path('blog_search', {'q':'数学'}) }}">数学</a>
-                <a style="color: #959595;" href="{{ path('blog_search', {'q':'算法'}) }}">算法</a>
-                <a style="color: #959595;" href="{{ path('blog_search', {'q':'octave'}) }}">octave</a>
-            </div>
-            <div class="row"
-                 style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
-                <a style="color: #959595;" href="{{ path('blog_search', {'q':'教程'}) }}">教程</a>
-                <a style="color: #959595;" href="{{ path('blog_search', {'q':'医院'}) }}">医院</a>
-                <a style="color: #959595;" href="{{ path('blog_search', {'q':'搜索引擎'}) }}">搜索引擎</a>
-            </div>
+            {#<div class="row"#}
+                 {#style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">#}
+                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'全栈技术'}) }}">全栈技术</a>#}
+                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'php'}) }}">php</a>#}
+                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'前端开发'}) }}">前端开发</a>#}
+            {#</div>#}
+            {#<div class="row"#}
+                 {#style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">#}
+                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'大数据'}) }}">大数据</a>#}
+                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'数据挖掘'}) }}">数据挖掘</a>#}
+                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'分析'}) }}">分析</a>#}
+            {#</div>#}
+            {#<div class="row"#}
+                 {#style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">#}
+                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'机器学习'}) }}">机器学习</a>#}
+                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'深度学习'}) }}">深度学习</a>#}
+                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'统计'}) }}">统计</a>#}
+            {#</div>#}
+            {#<div class="row"#}
+                 {#style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">#}
+                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'数学'}) }}">数学</a>#}
+                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'算法'}) }}">算法</a>#}
+                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'octave'}) }}">octave</a>#}
+            {#</div>#}
+            {#<div class="row"#}
+                 {#style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">#}
+                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'教程'}) }}">教程</a>#}
+                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'医院'}) }}">医院</a>#}
+                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'搜索引擎'}) }}">搜索引擎</a>#}
+            {#</div>#}
 
-            <br/>
-        </div>
+            {#<br/>#}
+        {#</div>#}
     </div>
 
     <div class="row">

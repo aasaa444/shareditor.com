@@ -219,4 +219,10 @@ class BlogPost
         $newDate = $this->createTime->format('Y-m-d H:i');
         return $newDate;
     }
+
+    public function getCreateDate()
+    {
+        $newDate = $this->createTime->format('Y-m-d');
+        return $newDate;
+    }
 }
