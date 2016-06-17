@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:wb="http://open.weibo.com/wb">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,6 +18,8 @@
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
 
     {% if app.request.host != 'localhost' %}
     <script>
@@ -157,7 +159,11 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-12 col-xs-12 text-center" style="color: #959595;margin-bottom: 10px;">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1">
+            <wb:follow-button uid="1667151640" type="red_2" width="136" height="24"></wb:follow-button>
+        </div>
+        <div class="col-sm-8 col-xs-12 text-center" style="color: #959595;margin-bottom: 10px;">
             {% if app.request.host != 'localhost' %}
                 <script type="text/javascript">
                     var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
