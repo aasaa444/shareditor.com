@@ -6,6 +6,10 @@ blog_list:
     path:     /bloglist/{subjectId}
     defaults: { _controller: AppBundle:Blog:list }
 
+blog_listbytag:
+    path:     /bloglistbytag/
+    defaults: { _controller: AppBundle:Blog:listbytag }
+
 blog_show:
     path:     /blogshow/
     defaults: { _controller: AppBundle:Blog:show }

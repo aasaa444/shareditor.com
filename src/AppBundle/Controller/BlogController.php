@@ -5,6 +5,8 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use \Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\QueryBuilder;
 
 class BlogController extends Controller
 {
@@ -18,6 +20,15 @@ class BlogController extends Controller
      * @var ObjectRepository
      */
     protected $subjectRepository;
+
+    /**
+     * @var EntityManager
+     */
+    protected $em;
+    /**
+     * @var QueryBuilder
+     */
+    protected $builder;
 
     public function listAction(Request $request, $subjectId)
     {
@@ -37,6 +48,30 @@ class BlogController extends Controller
 
         return $this->render('blog/list.html.twig', array('pagination' => $pagination,
             'subject' => $subject,
+            'latestblogs' => BlogController::getLatestBlogs($this),
+            'tophotblogs' => BlogController::getTopHotBlogs($this)));
+    }
+
+    public function listbytagAction(Request $request)
+    {
+        $tagName = $request->get('tagname');
+        $this->em = $this->get('doctrine.orm.entity_manager');
+        $this->builder = $this->em->createQueryBuilder();
+        $query = $this->builder->select('b')
+            ->add('from', 'AppBundle:BlogPost b INNER JOIN b.tags t')
+            ->where('t.name=:tag_name')
+            ->setParameter('tag_name', $tagName)
+            ->getQuery();
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->get('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
+        return $this->render('blog/listbytag.html.twig', array('pagination' => $pagination,
+            'tagname' => $tagName,
             'latestblogs' => BlogController::getLatestBlogs($this),
             'tophotblogs' => BlogController::getTopHotBlogs($this)));
     }

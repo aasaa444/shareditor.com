@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ tagname }} - SharEDITor - 关注大数据技术{% endblock title %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-sm-3 col-xs-1"></div>
+    <div class="col-sm-6 col-xs-10">
+        <h1>{{ tagname }}</h1>
+    </div>
+    <div class="col-sm-3 col-xs-1"></div>
+</div>
+<div class="row">
+    <div class="col-sm-3 col-xs-1"></div>
+    <div class="col-sm-6 col-xs-10">
+        <br />
+        {% for article in pagination %}
+            <h4><a href="{{ path('blog_show', {'blogId':article.id}) }}">{{ article.title }}</a>({{ article.createDate }})</h4>
+        {% endfor %}
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    </div>
+    <div class="col-sm-3 col-xs-1"></div>
+</div>
+
+{% endblock body %}
