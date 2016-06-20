@@ -25,6 +25,15 @@ class BlogPost
      * @ORM\ManyToOne(targetEntity="Subject", inversedBy="blogPosts")
      */
     private $subject;
+    /**
+     * @ORM\ManyToMany(targetEntity="Tag")
+     * @ORM\JoinTable(name="blogpost_tag",
+     *   joinColumns={@ORM\JoinColumn(name="blogpost_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
+     * )
+     */
+    private $tags;
+
 
     /**
      * @var integer
@@ -148,6 +157,22 @@ class BlogPost
     public function getSubject()
     {
         return $this->subject;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param mixed $tags
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
     }
 
     /**

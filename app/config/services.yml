@@ -19,6 +19,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: Category }
 
+    admin.tag:
+        class: AppBundle\Admin\TagAdmin
+        arguments: [~, AppBundle\Entity\Tag, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Tag }
+
     admin.blog_post:
         class: AppBundle\Admin\BlogPostAdmin
         arguments: [~, AppBundle\Entity\BlogPost, ~]

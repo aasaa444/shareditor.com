@@ -33,6 +33,13 @@ class BlogPostAdmin extends Admin
             ->end()
 
             ->with('Meta data', array('class' => 'col-md-3'))
+            ->add('tags', null, array(
+                'class' => 'AppBundle\Entity\Tag',
+                'property' => 'name',
+            ))
+            ->end()
+
+            ->with('Meta data', array('class' => 'col-md-3'))
             ->add('category', 'sonata_type_model', array(
                 'class' => 'AppBundle\Entity\Category',
                 'property' => 'name',
