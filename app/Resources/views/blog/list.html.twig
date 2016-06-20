@@ -29,6 +29,11 @@
                             <a class="btn btn-success btn-xs" href="{{ path('blog_list', {'subjectId':article.subject.id}) }}">
                                 {{ article.category.name }}
                             </a>
+                            {% for tag in article.tags %}
+                                <a class="btn btn-warning btn-xs" href="{{ path('blog_listbytag', {'tagname':tag.name}) }}">
+                                    {{ tag.name }}
+                                </a>
+                            {% endfor %}
                             <small>发表于 {{ article.createTimeStr }}</small>
                         </div>
                         <br />

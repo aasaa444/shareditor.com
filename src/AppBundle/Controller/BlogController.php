@@ -67,7 +67,7 @@ class BlogController extends Controller
         $pagination = $paginator->paginate(
             $query,
             $request->query->get('page', 1)/*page number*/,
-            10/*limit per page*/
+            100/*limit per page*/
         );
 
         return $this->render('blog/listbytag.html.twig', array('pagination' => $pagination,
