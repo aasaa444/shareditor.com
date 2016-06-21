@@ -72,8 +72,9 @@
 {% block logo %}
 <div class="row bg-primary" style="margin-right: 0">
     <div class="col-sm-1 col-xs-1"></div>
-    <div class="col-sm-8 col-xs-10"><h1><a href="{{ path('homepage') }}" style="text-decoration: none;color: white;">SharEDITor</a></h1></div>
-    <div class="col-sm-3 col-xs-1">
+    <div class="col-sm-8 col-xs-11"><h1><a href="{{ path('homepage') }}" style="text-decoration: none;color: white;">SharEDITor</a></h1></div>
+    <div class="col-sm-0 col-xs-1"></div>
+    <div class="col-sm-3 hidden-xs">
         <form action="{{ path('blog_search') }}" style="margin-top: 10px;">
             <input type="search" name="q" placeholder="搜文章" maxlength="200" style="background-color: transparent;">
         </form>
