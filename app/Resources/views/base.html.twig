@@ -33,6 +33,20 @@
             s.parentNode.insertBefore(hm, s);
         })();
     </script>
+    <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        //document.write(unescape("%3Cspan id='cnzz_stat_icon_1258402137'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258402137' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    {#<span id="cnzz_stat_icon_1258402137"><a href="http://www.cnzz.com/stat/website.php?web_id=1258402137" target="_blank" title="站长统计">站长统计</a></span>#}
+    <script src=" http://s11.cnzz.com/z_stat.php?id=1258402137" type="text/javascript"></script>
+    <script src="http://c.cnzz.com/core.php?web_id=1258402137&amp;t=z" charset="utf-8" type="text/javascript"></script>
+
+    <script>
+        //声明_czc对象:
+        var _czc = _czc || [];
+        //绑定siteid，请用您的siteid替换下方"XXXXXXXX"部分
+        _czc.push(["_setAccount", "1258402137"]);
+    </script>
     {% endif %}
 
     {% block head %}
@@ -112,7 +126,9 @@
                 <div class="row" style="margin: 10px;margin-left: 0; overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
                     <span style="color: #959595;">({{ article.createDate }})</span>
                     <a title="{{ article.title }}" style="color: #959595;"
-                       href="{{ path('blog_show', {'blogId':article.id}) }}">{{ article.title }}</a>
+                       href="{{ path('blog_show', {'blogId':article.id}) }}"
+                       onclick="_czc.push(['_trackEvent', '最新文章', '点击', '{{ article.title }}']);"
+                    >{{ article.title }}</a>
                 </div>
 
             {% endfor %}
@@ -176,12 +192,15 @@
     <div class="row" style="margin-right: 0">
         <div class="col-sm-2"></div>
         <div class="col-sm-8 col-xs-12 text-center" style="color: #959595;margin-bottom: 10px;">
-            {% if app.request.host != 'localhost' %}
-                <script type="text/javascript">
-                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1258402137'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258402137' type='text/javascript'%3E%3C/script%3E"));
-                </script>
-            {% endif %}
+            {#{% if app.request.host != 'localhost' %}#}
+                {#<script type="text/javascript">#}
+                    {#var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");#}
+                    {#//document.write(unescape("%3Cspan id='cnzz_stat_icon_1258402137'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258402137' type='text/javascript'%3E%3C/script%3E"));#}
+                {#</script>#}
+                {#<span id="cnzz_stat_icon_1258402137"><a href="http://www.cnzz.com/stat/website.php?web_id=1258402137" target="_blank" title="站长统计">站长统计</a></span>#}
+                {#<script src=" http://s11.cnzz.com/z_stat.php?id=1258402137" type="text/javascript"></script>#}
+                {#<script src="http://c.cnzz.com/core.php?web_id=1258402137&amp;t=z" charset="utf-8" type="text/javascript"></script>#}
+            {#{% endif %}#}
             Copyright © <a href="{{ path('homepage') }}">shareditor.com</a> | 京ICP备13047771号 | shareditor.com^_^gmail.com
         </div>
     </div>
