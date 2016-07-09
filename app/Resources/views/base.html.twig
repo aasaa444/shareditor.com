@@ -35,16 +35,7 @@
     </script>
     <script type="text/javascript">
         var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-        //document.write(unescape("%3Cspan id='cnzz_stat_icon_1258402137'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258402137' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    {#<span id="cnzz_stat_icon_1258402137"><a href="http://www.cnzz.com/stat/website.php?web_id=1258402137" target="_blank" title="站长统计">站长统计</a></span>#}
-    {#<script src=" http://s11.cnzz.com/z_stat.php?id=1258402137" type="text/javascript"></script>#}
-    {#<script src="http://c.cnzz.com/core.php?web_id=1258402137&amp;t=z" charset="utf-8" type="text/javascript"></script>#}
-
-    <script>
-        //声明_czc对象:
         var _czc = _czc || [];
-        //绑定siteid，请用您的siteid替换下方"XXXXXXXX"部分
         _czc.push(["_setAccount", "1258402137"]);
     </script>
     {% endif %}
@@ -91,13 +82,17 @@
     <div class="col-sm-2 col-xs-11"><h1><a href="{{ path('homepage') }}" style="text-decoration: none;color: white;">SharEDITor</a></h1></div>
     <div class="col-sm-6 col-xs-12" >
         <div class="fa fa-github" style="margin-top: 40px; margin-left: 20px;">
-            <a href="https://github.com/warmheartli" style="color: white;">
+            <a href="https://github.com/warmheartli" style="color: white;"
+               onclick="_czc.push(['_trackEvent', 'github链接', '点击', '{{ app.request.server.get('HTTP_USER_AGENT') }}']);"
+            >
                 github
             </a>
         </div>
 
         <div class="fa fa-weibo" style="margin-top: 40px; margin-left: 20px;">
-            <a href="http://weibo.com/chuangwanglaile" style="color: white;">
+            <a href="http://weibo.com/chuangwanglaile" style="color: white;"
+               onclick="_czc.push(['_trackEvent', 'weibo链接', '点击', '{{ app.request.server.get('HTTP_USER_AGENT') }}']);"
+            >
                 weibo
             </a>
         </div>
@@ -127,7 +122,7 @@
                     <span style="color: #959595;">({{ article.createDate }})</span>
                     <a title="{{ article.title }}" style="color: #959595;"
                        href="{{ path('blog_show', {'blogId':article.id}) }}"
-                       onclick="_czc.push(['_trackEvent', '最新文章', '点击', '{{ article.title }}']);"
+                       onclick="_czc.push(['_trackEvent', '最新文章', '点击', '({{ article.title }})({{ app.request.uri }})({{ app.request.server.get('HTTP_USER_AGENT') }})']);"
                     >{{ article.title }}</a>
                 </div>
 
@@ -143,50 +138,14 @@
                 <div class="row" style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
                     <span style="color: #FFFFFF; background-color: #AAAAAA; border-radius: 12px;padding-left: 5px;padding-right: 5px;">{{ article.pv }}</span>
                     <a title="{{ article.title }}" style="color: #959595;"
-                       href="{{ path('blog_show', {'blogId':article.id}) }}">{{ article.title }}</a>
+                       href="{{ path('blog_show', {'blogId':article.id}) }}"
+                       onclick="_czc.push(['_trackEvent', '最热文章', '点击', '({{ article.title }})({{ app.request.uri }})({{ app.request.server.get('HTTP_USER_AGENT') }})']);"
+                    >{{ article.title }}</a>
                 </div>
 
             {% endfor %}
             <br/>
         </div>
-
-        {#<div class="col-sm-1 col-xs-1">#}
-            {#<h4 style="color: #FFFFFF; border-bottom: 1px solid #695d69; padding-bottom: 10px; margin-top: 30px;">#}
-                {#热门搜索</h4>#}
-
-            {#<div class="row"#}
-                 {#style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">#}
-                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'全栈技术'}) }}">全栈技术</a>#}
-                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'php'}) }}">php</a>#}
-                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'前端开发'}) }}">前端开发</a>#}
-            {#</div>#}
-            {#<div class="row"#}
-                 {#style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">#}
-                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'大数据'}) }}">大数据</a>#}
-                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'数据挖掘'}) }}">数据挖掘</a>#}
-                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'分析'}) }}">分析</a>#}
-            {#</div>#}
-            {#<div class="row"#}
-                 {#style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">#}
-                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'机器学习'}) }}">机器学习</a>#}
-                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'深度学习'}) }}">深度学习</a>#}
-                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'统计'}) }}">统计</a>#}
-            {#</div>#}
-            {#<div class="row"#}
-                 {#style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">#}
-                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'数学'}) }}">数学</a>#}
-                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'算法'}) }}">算法</a>#}
-                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'octave'}) }}">octave</a>#}
-            {#</div>#}
-            {#<div class="row"#}
-                 {#style="margin: 10px;margin-left: 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">#}
-                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'教程'}) }}">教程</a>#}
-                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'医院'}) }}">医院</a>#}
-                {#<a style="color: #959595;" href="{{ path('blog_search', {'q':'搜索引擎'}) }}">搜索引擎</a>#}
-            {#</div>#}
-
-            {#<br/>#}
-        {#</div>#}
     </div>
 
     <div class="row" style="margin-right: 0">
@@ -194,7 +153,6 @@
         <div class="col-sm-8 col-xs-12 text-center" style="color: #959595;margin-bottom: 10px;">
             {% if app.request.host != 'localhost' %}
                 <script type="text/javascript">
-                    //var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
                     document.write(unescape("%3Cspan id='cnzz_stat_icon_1258402137'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258402137' type='text/javascript'%3E%3C/script%3E"));
                 </script>
             {% endif %}
