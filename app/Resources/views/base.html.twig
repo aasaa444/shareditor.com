@@ -83,7 +83,7 @@
     <div class="col-sm-6 col-xs-12" >
         <div class="fa fa-github" style="margin-top: 40px; margin-left: 20px;">
             <a href="https://github.com/warmheartli" style="color: white;"
-               onclick="_czc.push(['_trackEvent', 'github链接', '点击', '{{ app.request.server.get('HTTP_USER_AGENT') }}']);"
+               onclick="_czc.push(['_trackEvent', 'github链接', '点击']);"
             >
                 github
             </a>
@@ -91,7 +91,7 @@
 
         <div class="fa fa-weibo" style="margin-top: 40px; margin-left: 20px;">
             <a href="http://weibo.com/chuangwanglaile" style="color: white;"
-               onclick="_czc.push(['_trackEvent', 'weibo链接', '点击', '{{ app.request.server.get('HTTP_USER_AGENT') }}']);"
+               onclick="_czc.push(['_trackEvent', 'weibo链接', '点击']);"
             >
                 weibo
             </a>
@@ -122,7 +122,7 @@
                     <span style="color: #959595;">({{ article.createDate }})</span>
                     <a title="{{ article.title }}" style="color: #959595;"
                        href="{{ path('blog_show', {'blogId':article.id}) }}"
-                       onclick="_czc.push(['_trackEvent', '最新文章', '点击', '({{ article.title }})({{ app.request.uri }})({{ app.request.server.get('HTTP_USER_AGENT') }})']);"
+                       onclick="_czc.push(['_trackEvent', '最新文章', '点击', '{{ article.title }}']);"
                     >{{ article.title }}</a>
                 </div>
 
@@ -139,7 +139,7 @@
                     <span style="color: #FFFFFF; background-color: #AAAAAA; border-radius: 12px;padding-left: 5px;padding-right: 5px;">{{ article.pv }}</span>
                     <a title="{{ article.title }}" style="color: #959595;"
                        href="{{ path('blog_show', {'blogId':article.id}) }}"
-                       onclick="_czc.push(['_trackEvent', '最热文章', '点击', '({{ article.title }})({{ app.request.uri }})({{ app.request.server.get('HTTP_USER_AGENT') }})']);"
+                       onclick="_czc.push(['_trackEvent', '最热文章', '点击', '{{ article.title }}']);"
                     >{{ article.title }}</a>
                 </div>
 
