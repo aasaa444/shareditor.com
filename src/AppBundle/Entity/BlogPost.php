@@ -250,4 +250,14 @@ class BlogPost
         $newDate = $this->createTime->format('m-d');
         return $newDate;
     }
+
+    public function getSimpleTitle()
+    {
+        if (!empty($this->tags) && sizeof($this->tags) > 0) {
+            $tagName = $this->tags[0]->getName();
+            return str_replace($tagName, '', $this->title);
+        } else {
+            return $this->title;
+        }
+    }
 }

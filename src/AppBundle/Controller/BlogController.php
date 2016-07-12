@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use \Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
+use AppBundle\Entity\BlogPost;
+use Symfony\Component\HttpFoundation\Response;
 
 class BlogController extends Controller
 {
@@ -29,7 +31,16 @@ class BlogController extends Controller
      * @var QueryBuilder
      */
     protected $builder;
+    /**
+     * @var BlogPost
+     */
+    protected $blogPost;
 
+    /**
+     * @param Request $request
+     * @param $subjectId
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function listAction(Request $request, $subjectId)
     {
         $em = $this->get('doctrine.orm.entity_manager');
@@ -80,14 +91,36 @@ class BlogController extends Controller
     {
         $blogId = $request->get('blogId');
         $this->blogPostRepository = $this->getDoctrine()->getRepository('AppBundle:BlogPost');
-        $blogPost = $this->blogPostRepository->find($blogId);
-        if (!empty($blogPost)) {
-            return $this->render('blog/show.html.twig', array('blogpost' => $blogPost,
+        $this->blogPost = $this->blogPostRepository->find($blogId);
+        $tags = $this->blogPost->getTags();
+        $pagination = null;
+        if (!empty($tags) && sizeof($tags) > 0) {
+            $tag = $tags[0];
+            $tagName = $tag->getName();
+            $this->em = $this->get('doctrine.orm.entity_manager');
+            $this->builder = $this->em->createQueryBuilder();
+            $query = $this->builder->select('b')
+                ->add('from', 'AppBundle:BlogPost b INNER JOIN b.tags t')
+                ->where('t.name=:tag_name')
+                ->setParameter('tag_name', $tagName)
+                ->getQuery();
+
+            $paginator = $this->get('knp_paginator');
+            $pagination = $paginator->paginate(
+                $query,
+                $request->query->get('page', 1)/*page number*/,
+                100/*limit per page*/
+            );
+        }
+
+        if (!empty($this->blogPost)) {
+            return $this->render('blog/show.html.twig', array('blogpost' => $this->blogPost,
                 'latestblogs' => BlogController::getLatestBlogs($this),
                 'tophotblogs' => BlogController::getTopHotBlogs($this),
                 'is_original' => true,
                 'lastblog' => $this->findLastBlog($blogId),
-                'nextblog' => $this->findNextBlog($blogId)
+                'nextblog' => $this->findNextBlog($blogId),
+                'pagination' => $pagination
             ));
         } else {
             return $this->render('blog/nofound.html.twig', array(

@@ -2,10 +2,10 @@
 
 {% block head %}
     {% if is_original == true %}
-    <meta property="og:type"content="blog" />
-    <meta property="blog:published_time" content="{{ blogpost.createTimeStr|date("c") }}"/>
-    <meta property="blog:author" content="闯王来了要纳粮"/>
-    <meta property="blog:published_first" content="SharEDITor, {{ app.request.uri }}" />
+        <meta property="og:type" content="blog"/>
+        <meta property="blog:published_time" content="{{ blogpost.createTimeStr|date("c") }}"/>
+        <meta property="blog:author" content="闯王来了要纳粮"/>
+        <meta property="blog:published_first" content="SharEDITor, {{ app.request.uri }}"/>
     {% endif %}
     {#<link rel="stylesheet" href="/bundles/ivoryckeditor/plugins/codesnippet/lib/highlight/styles/atelier-dune.dark.css">#}
     <link rel="stylesheet" href="/bundles/ivoryckeditor/plugins/codesnippet/lib/highlight/styles/ir_black.css">
@@ -17,116 +17,143 @@
 
 {% block body %}
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-3 col-xs-1"></div>
-            <div class="col-sm-6 col-xs-10">
-                <div class="row">
-                    <h1>{{ blogpost.title }}</h1>
-                </div>
-                <div class="row">
-                    <a class="btn btn-info btn-xs" href="{{ path('blog_list', {'subjectId':blogpost.subject.id}) }}">
-                        {{ blogpost.subject.name }}
-                    </a>
-                    <a class="btn btn-success btn-xs" href="{{ path('blog_list', {'subjectId':blogpost.subject.id}) }}">
-                        {{ blogpost.category.name }}
-                    </a>
-                    {% for tag in blogpost.tags %}
-                    <a class="btn btn-warning btn-xs" href="{{ path('blog_listbytag', {'tagname':tag.name}) }}">
-                        {{ tag.name }}
-                    </a>
-                    {% endfor %}
-                    <small>发表于 {{ blogpost.createTimeStr }}</small>
-                    <small>阅读{{ blogpost.pv }}次</small>
-                </div>
+<div class="container-fluid">
 
-                <div class="row">
-                    <hr/>
-                </div>
-                <div class="row">
+    <div class="row">
+        <div class="col-sm-2 col-xs-1"></div>
+        <div class="col-sm-6 col-xs-1">
+
+            <div class="row">
+                <div class="col-sm-12 col-xs-10">
                     <div class="row">
-                        <div class="col-sm-12 col-xs-12">
-                            <img style="width: 100%; height: 100%;" src="/uploads/media/default/0001/01/thumb_{{ blogpost.image.id }}_default_big.{{ blogpost.image.extension }}">
+                        <h1>{{ blogpost.title }}</h1>
+                    </div>
+                    <div class="row">
+                        <a class="btn btn-info btn-xs"
+                           href="{{ path('blog_list', {'subjectId':blogpost.subject.id}) }}">
+                            {{ blogpost.subject.name }}
+                        </a>
+                        <a class="btn btn-success btn-xs"
+                           href="{{ path('blog_list', {'subjectId':blogpost.subject.id}) }}">
+                            {{ blogpost.category.name }}
+                        </a>
+                        {% for tag in blogpost.tags %}
+                            <a class="btn btn-warning btn-xs" href="{{ path('blog_listbytag', {'tagname':tag.name}) }}">
+                                {{ tag.name }}
+                            </a>
+                        {% endfor %}
+                        <small>发表于 {{ blogpost.createTimeStr }}</small>
+                        <small>阅读{{ blogpost.pv }}次</small>
+                    </div>
+
+                    <div class="row">
+                        <hr/>
+                    </div>
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                                <img style="width: 100%; height: 100%;"
+                                     src="/uploads/media/default/0001/01/thumb_{{ blogpost.image.id }}_default_big.{{ blogpost.image.extension }}">
+                            </div>
+                        </div>
+                        <br/>
+                        {{ blogpost.body|raw }}
+                    </div>
+
+                    <div class="row">
+                        <div class="ds-share" data-thread-key="{{ blogpost.id }}" data-title="{{ blogpost.title }}"
+                             data-images="http://{{ app.request.httphost }}/uploads/media/default/0001/01/thumb_{{ blogpost.image.id }}_default_small.{{ blogpost.image.extension }}"
+                             data-content="{{ blogpost.abstract }}" data-url="{{ app.request.uri }}">
+                            <div class="ds-share-inline">
+                                <ul class="ds-share-icons-16">
+
+                                    <li data-toggle="ds-share-icons-more"><a class="ds-more"
+                                                                             href="javascript:void(0);">分享到：</a></li>
+                                    <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                                    <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+                                    <li><a href="javascript:void(0);" class="ds-renren" data-service="renren">人人网</a>
+                                    </li>
+                                    <li><a href="javascript:void(0);" class="ds-wechat" data-service="wechat">微信</a>
+                                    </li>
+
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <br/>
-                    {{ blogpost.body|raw }}
-                </div>
-
-                <div class="row">
-                    <div class="ds-share" data-thread-key="{{ blogpost.id }}" data-title="{{ blogpost.title }}"
-                         data-images="http://{{ app.request.httphost }}/uploads/media/default/0001/01/thumb_{{ blogpost.image.id }}_default_small.{{ blogpost.image.extension }}"
-                         data-content="{{ blogpost.abstract }}" data-url="{{ app.request.uri }}">
-                        <div class="ds-share-inline">
-                            <ul class="ds-share-icons-16">
-
-                                <li data-toggle="ds-share-icons-more"><a class="ds-more"
-                                                                         href="javascript:void(0);">分享到：</a></li>
-                                <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-                                <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-                                <li><a href="javascript:void(0);" class="ds-renren" data-service="renren">人人网</a></li>
-                                <li><a href="javascript:void(0);" class="ds-wechat" data-service="wechat">微信</a></li>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="row">
-                        <div class="col-sm-6 col-xs-6">
-                            <span style="color:#aaaaaa;">前一篇:</span>
-                            {% if lastblog != null %}
-                                <a href="{{ path('blog_show', {'blogId':lastblog.id}) }}">{{ lastblog.title }}</a>
-                            {% else %}
-                                <span style="color:#aaaaaa;">这是第一篇</span>
-                            {% endif %}
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-6">
+                                <span style="color:#aaaaaa;">前一篇:</span>
+                                {% if lastblog != null %}
+                                    <a href="{{ path('blog_show', {'blogId':lastblog.id}) }}">{{ lastblog.title }}</a>
+                                {% else %}
+                                    <span style="color:#aaaaaa;">这是第一篇</span>
+                                {% endif %}
 
-                        </div>
-                        <div class="text-right col-sm-6 col-xs-6">
-                            <span style="color:#aaaaaa;">后一篇:</span>
-                            {% if nextblog != null %}
-                                <a href="{{ path('blog_show', {'blogId':nextblog.id}) }}">{{ nextblog.title }}</a>
-                            {% else %}
-                                <span style="color:#aaaaaa;">没有了</span>
-                            {% endif %}
+                            </div>
+                            <div class="text-right col-sm-6 col-xs-6">
+                                <span style="color:#aaaaaa;">后一篇:</span>
+                                {% if nextblog != null %}
+                                    <a href="{{ path('blog_show', {'blogId':nextblog.id}) }}">{{ nextblog.title }}</a>
+                                {% else %}
+                                    <span style="color:#aaaaaa;">没有了</span>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3 col-xs-1"></div>
-        </div>
 
-        <div class="row">
-            <div class="col-sm-3 col-xs-1"></div>
-            <div class="col-sm-6 col-xs-10">
-                <div class="row">
-                <!-- 多说评论框 start -->
-                <div class="ds-thread" data-thread-key="{{ blogpost.id }}" data-title="{{ blogpost.title }}"
-                     data-url="{{ app.request.uri }}"></div>
-                <!-- 多说评论框 end -->
-                <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-                <script type="text/javascript">
-                    var duoshuoQuery = {short_name: "shareditor"};
-                    (function () {
-                        var ds = document.createElement('script');
-                        ds.type = 'text/javascript';
-                        ds.async = true;
-                        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-                        ds.charset = 'UTF-8';
-                        (document.getElementsByTagName('head')[0]
-                        || document.getElementsByTagName('body')[0]).appendChild(ds);
-                    })();
-                </script>
-                <!-- 多说公共JS代码 end -->
+            <div class="row">
+                <div class="col-sm-12 col-xs-10">
+                    <div class="row">
+                        <!-- 多说评论框 start -->
+                        <div class="ds-thread" data-thread-key="{{ blogpost.id }}" data-title="{{ blogpost.title }}"
+                             data-url="{{ app.request.uri }}"></div>
+                        <!-- 多说评论框 end -->
+                        <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                        <script type="text/javascript">
+                            var duoshuoQuery = {short_name: "shareditor"};
+                            (function () {
+                                var ds = document.createElement('script');
+                                ds.type = 'text/javascript';
+                                ds.async = true;
+                                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                ds.charset = 'UTF-8';
+                                (document.getElementsByTagName('head')[0]
+                                || document.getElementsByTagName('body')[0]).appendChild(ds);
+                            })();
+                        </script>
+                        <!-- 多说公共JS代码 end -->
                     </div>
+                </div>
             </div>
-            <div class="col-sm-3 col-xs-1"></div>
         </div>
+        <div class="col-sm-2 col-xs-1">
+
+            <br />
+
+            <h4>
+                {% for tag in blogpost.tags %}
+                    系列:{{ tag.name }}
+                {% endfor %}
+            </h4>
+            <div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+            {% for article in pagination %}
+                {% if blogpost.id == article.id %}
+                    <h6 style="color: red;">{{ article.simpleTitle }}</h6>
+                {% else %}
+                    <h6><a href="{{ path('blog_show', {'blogId':article.id}) }}" >{{ article.simpleTitle }}</a></h6>
+                {% endif %}
+            {% endfor %}
+                </div>
+
+            <h4>
+
+        </div>
+        <div class="col-sm-2 col-xs-1"></div>
 
     </div>
 
 
-
-
-
-{% endblock body %}
+    {% endblock body %}
