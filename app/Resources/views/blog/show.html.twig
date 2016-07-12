@@ -143,7 +143,9 @@
                 {% if blogpost.id == article.id %}
                     <h6 style="color: red;">{{ article.simpleTitle }}</h6>
                 {% else %}
-                    <h6><a href="{{ path('blog_show', {'blogId':article.id}) }}" >{{ article.simpleTitle }}</a></h6>
+                    <h6><a href="{{ path('blog_show', {'blogId':article.id}) }}"
+                           onclick="_czc.push(['_trackEvent', '右侧链接', '点击', '{{ article.title }}']);"
+                        >{{ article.simpleTitle }}</a></h6>
                 {% endif %}
             {% endfor %}
                 </div>
