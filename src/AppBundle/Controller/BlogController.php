@@ -87,6 +87,13 @@ class BlogController extends Controller
             'tophotblogs' => BlogController::getTopHotBlogs($this)));
     }
 
+    private function getAllTagNames()
+    {
+        $blogPostRepository = $this->getDoctrine()->getRepository('AppBundle:Tag');
+        $tags = $blogPostRepository->findAll();
+        return $tags;
+    }
+
     public function showAction(Request $request)
     {
         $blogId = $request->get('blogId');
@@ -120,7 +127,8 @@ class BlogController extends Controller
                 'is_original' => true,
                 'lastblog' => $this->findLastBlog($blogId),
                 'nextblog' => $this->findNextBlog($blogId),
-                'pagination' => $pagination
+                'pagination' => $pagination,
+                'tags' => $this->getAllTagNames()
             ));
         } else {
             return $this->render('blog/nofound.html.twig', array(
