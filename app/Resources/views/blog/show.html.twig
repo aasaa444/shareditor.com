@@ -133,6 +133,31 @@
 
             <br/>
 
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="fa fa-github" style="margin-top: 40px;">
+                        <a href="https://github.com/warmheartli"
+                           onclick="_czc.push(['_trackEvent', 'github链接', '点击']);"
+                        >
+                            github
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="fa fa-weibo" style="margin-top: 40px;">
+                        <a href="http://weibo.com/chuangwanglaile"
+                           onclick="_czc.push(['_trackEvent', 'weibo链接', '点击']);"
+                        >
+                            weibo
+                        </a>
+                    </div>
+
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+
+            <br/>
             <h4>
                 {% for tag in blogpost.tags %}
                     系列:{{ tag.name }}
