@@ -134,30 +134,30 @@
             <br/>
 
             <div class="row">
-                <div class="col-sm-5">
-                    <div class="fa fa-github" style="margin-top: 40px;">
-                        <a href="https://github.com/warmheartli"
+                <div class="col-sm-3">
+                    <a href="https://github.com/warmheartli"
                            onclick="_czc.push(['_trackEvent', 'github链接', '点击']);"
                         >
-                            github
-                        </a>
-                    </div>
+                        <div class="fa fa-github fa-3x" style="margin-top: 40px;"></div>
+                    </a>
                 </div>
 
-                <div class="col-sm-5">
-                    <div class="fa fa-weibo" style="margin-top: 40px;">
-                        <a href="http://weibo.com/chuangwanglaile"
+                <div class="col-sm-3">
+                    <a href="http://weibo.com/chuangwanglaile"
                            onclick="_czc.push(['_trackEvent', 'weibo链接', '点击']);"
                         >
-                            weibo
-                        </a>
-                    </div>
-
+                        <div class="fa fa-weibo fa-3x" style="margin-top: 40px;"></div>
+                    </a>
                 </div>
                 <div class="col-sm-2"></div>
             </div>
+            <hr/>
+            <h4>
+                官方微信公众号
+            </h4>
+            <img src="http://{{ app.request.httphost }}/images/weixinpub.jpg" width="90%" height="90%" style=""/>
 
-            <br/>
+            <hr/>
             <h4>
                 {% for tag in blogpost.tags %}
                     系列:{{ tag.name }}
@@ -175,7 +175,7 @@
                     {% endif %}
                 {% endfor %}
             </div>
-
+            <hr/>
             <h4>
                 全部系列
             </h4>
@@ -192,7 +192,19 @@
     <br />
 
     <div class="row visible-xs">
+        <hr style="width: 90%;"/>
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10" style="padding:0">
+            <h4>
+                官方微信公众号
+            </h4>
+            <img src="http://{{ app.request.httphost }}/images/weixinpub.jpg" width="90%" height="90%" style=""/>
+        </div>
+    </div>
+
+    <div class="row visible-xs">
         <hr style="width: 90%;" />
+
         <div class="col-xs-1"></div>
         <div class="col-xs-10" style="padding:0">
             <h4>
