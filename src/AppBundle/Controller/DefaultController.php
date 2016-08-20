@@ -28,7 +28,7 @@ class DefaultController extends Controller
     {
         $this->subjectRepository = $this->getDoctrine()->getRepository('AppBundle:Subject');
         $subjects = $this->subjectRepository->findAll();
-        $this->swapSubject($subjects);
+//        $this->swapSubject($subjects);
 
         return $this->render('default/index.html.twig', array(
             'subjects' => $subjects,
