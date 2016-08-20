@@ -79,7 +79,8 @@
 {% block logo %}
 <div class="row bg-primary" style="margin-right: 0">
     <div class="col-sm-1 col-xs-1"></div>
-    <div class="col-sm-2 col-xs-11"><h1><a href="{{ path('homepage') }}" style="text-decoration: none;color: white;">SharEDITor</a></h1></div>
+    <div class="col-sm-2 col-xs-11"><h1><a href="{{ path('homepage') }}" style="text-decoration: none;color: white;"
+                                           onclick="_czc.push(['_trackEvent', 'logo', '点击']);">SharEDITor</a></h1></div>
     <div class="col-sm-6 col-xs-12 visible-xs" >
         <div class="fa fa-github" style="margin-top: 40px; margin-left: 20px;">
             <a href="https://github.com/warmheartli" style="color: white;"
@@ -158,7 +159,7 @@
                     document.write(unescape("%3Cspan id='cnzz_stat_icon_1258402137'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258402137' type='text/javascript'%3E%3C/script%3E"));
                 </script>
             {% endif %}
-            Copyright © <a href="{{ path('homepage') }}">shareditor.com</a> | 京ICP备13047771号 | shareditor.com^_^gmail.com
+            Copyright © <a href="{{ path('homepage') }}" onclick="_czc.push(['_trackEvent', '底部首页', '点击']);">shareditor.com</a> | 京ICP备13047771号 | shareditor.com^_^gmail.com
         </div>
     </div>
 </div>
