@@ -44,7 +44,7 @@ class DefaultController extends Controller
 
         $tagList = array(
             '自己动手做聊天机器人' => 'http://www.shareditor.com/uploads/media/default/0001/01/thumb_336_default_big.png',
-            '机器学习精简入门教程' => 'http://www.shareditor.com/uploads/media/default/0001/01/1fcb6045aae4bf395756b77c26538d554eccbb89.jpeg',
+            '机器学习教程' => 'http://www.shareditor.com/uploads/media/default/0001/01/1fcb6045aae4bf395756b77c26538d554eccbb89.jpeg',
             '教你成为全栈工程师(Full Stack Developer)' => 'http://www.shareditor.com/uploads/media/default/0001/01/c187f650ea1c870544c320fa452f5da1615b59e8.jpeg',
         );
         $tagData = $this->getTagData($tagList);
