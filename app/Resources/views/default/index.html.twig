@@ -12,18 +12,56 @@
     <div class="row" style="margin-right: 0">
         <div class="col-sm-1 col-xs-1"></div>
 
+        {% for tag,url in taglist %}
+        <div class="col-sm-2 col-xs-12">
+            <div class="thumbnail">
+                <img class="hidden-xs" src="{{ url }}" alt="tag">
+
+                <div class="caption">
+                    <a href="{{ path('blog_listbytag', {'tagname':tag}) }}">
+                    <h3>{{ tag }}({{ tagcounts[tag] }})</h3>
+                        </a>
+
+                    <p>
+                        {% for blog in tagblogs[tag] %}
+
+                            <h5>
+                        <a href="{{ path('blog_show', {'blogId':blog.id}) }}">
+                                {{ blog.simpleTitle }}
+                        </a>
+                    </h5>
+                        {% endfor %}
+                        <a href="{{ path('blog_listbytag', {'tagname':tag}) }}">
+                            <h5>更多>>></h5>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
         {% for subject in subjects %}
+            {% if (loop.index <= 2) %}
+
             <div class="col-sm-2 col-xs-12">
-                <a href="{{ path('blog_list', {'subjectId':subject.id}) }}" class="thumbnail">
-                    <img src="{{ subject.photo }}" alt="{{ subject.name }}">
+                <div href="{{ path('blog_list', {'subjectId':subject.id}) }}" class="thumbnail">
+                    <img class="hidden-xs" src="{{ subject.photo }}" alt="{{ subject.name }}">
 
                     <div class="caption">
-                        <h3>{{ subject.name }}({{ blogcounts[subject.id] }})</h3>
-
-                        <p>{{ subject.introduce }}</p>
+                        <a href="{{ path('blog_list', {'subjectId':subject.id}) }}">
+                        <h3>
+                            {{ subject.name }}({{ blogcounts[subject.id] }})</h3>
+                            </a>
+                        <p>
+                            {{ subject.introduce }}
+                            <a href="{{ path('blog_list', {'subjectId':subject.id}) }}">
+                                <h5>更多>>></h5>
+                            </a>
+                        </p>
                     </div>
-                </a>
+                </div>
             </div>
+            {% endif %}
         {% endfor %}
 
         <div class="col-sm-1 col-xs-1"></div>
