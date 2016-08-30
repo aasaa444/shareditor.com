@@ -18,7 +18,9 @@
                 <img class="hidden-xs" src="{{ url }}" alt="tag">
 
                 <div class="caption">
-                    <a href="{{ path('blog_listbytag', {'tagname':tag}) }}">
+                    <a href="{{ path('blog_listbytag', {'tagname':tag}) }}"
+                       onclick="_czc.push(['_trackEvent', '首页类别', '点击', '{{ tag }}']);"
+                    >
                     <h3>{{ tag }}({{ tagcounts[tag] }})</h3>
                         </a>
 
@@ -26,12 +28,16 @@
                         {% for blog in tagblogs[tag] %}
 
                             <h5>
-                        <a href="{{ path('blog_show', {'blogId':blog.id}) }}">
+                        <a href="{{ path('blog_show', {'blogId':blog.id}) }}"
+                           onclick="_czc.push(['_trackEvent', '首页下挂', '点击', '{{ blog.simpleTitle }}']);"
+                        >
                                 {{ blog.simpleTitle }}
                         </a>
                     </h5>
                         {% endfor %}
-                        <a href="{{ path('blog_listbytag', {'tagname':tag}) }}">
+                        <a href="{{ path('blog_listbytag', {'tagname':tag}) }}"
+                           onclick="_czc.push(['_trackEvent', '首页更多', '点击', '{{ tag }}']);"
+                        >
                             <h5>更多>>></h5>
                         </a>
                     </p>
@@ -48,13 +54,17 @@
                     <img class="hidden-xs" src="{{ subject.photo }}" alt="{{ subject.name }}">
 
                     <div class="caption">
-                        <a href="{{ path('blog_list', {'subjectId':subject.id}) }}">
+                        <a href="{{ path('blog_list', {'subjectId':subject.id}) }}"
+                           onclick="_czc.push(['_trackEvent', '首页类别', '点击', '{{ subject.name }}']);"
+                        >
                         <h3>
                             {{ subject.name }}({{ blogcounts[subject.id] }})</h3>
                             </a>
                         <p>
                             {{ subject.introduce }}
-                            <a href="{{ path('blog_list', {'subjectId':subject.id}) }}">
+                            <a href="{{ path('blog_list', {'subjectId':subject.id}) }}"
+                               onclick="_czc.push(['_trackEvent', '首页更多', '点击', '{{ subject.name }}']);"
+                            >
                                 <h5>更多>>></h5>
                             </a>
                         </p>
