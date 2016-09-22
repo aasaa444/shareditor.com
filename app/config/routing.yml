@@ -97,3 +97,12 @@ pdf_latest:
         "month": "[01]\d"
         "day": "[0123]\d"
     defaults: { _controller: AppBundle:Pdf:generate }
+
+
+chatbot_home:
+    path:     /chatbot/
+    defaults: { _controller: AppBundle:ChatBot:index }
+
+chatbot_query:
+    path:     /chatbot/query
+    defaults: { _controller: AppBundle:ChatBot:query }

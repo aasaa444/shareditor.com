@@ -191,10 +191,10 @@ class BlogController extends Controller
         return $blogposts;
     }
 
-    public static function getTopHotBlogs($contoller)
+    public static function getTopHotBlogs($contoller, $limit = 5)
     {
         $blogPostRepository = $contoller->getDoctrine()->getRepository('AppBundle:BlogPost');
-        $tophotblogs = $blogPostRepository->findBy(array(), array('pv' => 'DESC'), 5);
+        $tophotblogs = $blogPostRepository->findBy(array(), array('pv' => 'DESC'), $limit);
         return $tophotblogs;
     }
 
