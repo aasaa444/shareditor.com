@@ -68,6 +68,7 @@
         }
         addText(input, false);
         jQuery('#input').val('');
+        jQuery('#info').html('机器人正在思考中,请稍后...');
         var datastr = "input=" + input;
         datastr = encodeURI(datastr);
         var url = "/chatbot/query";
@@ -82,6 +83,7 @@
             var responseText = xmlHttp.responseText;
             // http://docs.cksource.com/ckeditor_api/symbols/src/core_editor.js.html
             addText(responseText, true);
+            jQuery('#info').html('');
         }
     }
 
@@ -132,8 +134,8 @@
                 <div style='color: blue; text-align: left; padding: 5px;'>机器人: 啥?你问我怎么这么聪明会聊天?因为我刚刚吃了一堆影视剧字幕!</div>
             </textarea>
         </div>
+        <div id="info" style="color: #FFFFFF; height:20px;"></div>
         <br />
-
         <div class="row">
             <div class="input-group">
                 <input type="text" id="input" class="form-control" autofocus="autofocus" onkeydown="submitByEnter()" />
