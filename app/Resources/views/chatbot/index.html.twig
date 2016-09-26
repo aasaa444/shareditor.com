@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>{% block title %}聊天机器人{% endblock title %}</title>
+    <title>{% block title %}小二兔聊天机器人{% endblock title %}</title>
 
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -46,13 +46,27 @@
 
 </head>
 
-{#<body style="background-color: RGB(230, 254, 254);">#}
-<body style="background-color: black">
+<body style="background-color: RGB(31,31,31)">
 
 
 <script type="text/javascript" src="/bundles/ivoryckeditor/ckeditor.js"></script>
 
 <script>
+    var checkSystem = function () {
+        var uaMap = {
+            'android': /Android/i,
+            'ios': /(?:iPhone|iPad)/i
+        };
+        var ua = window.navigator.userAgent;
+        for (var i in uaMap) {
+            if (uaMap[i].test(ua)) {
+                return i;
+            }
+        }
+        return null;
+    };
+
+    var showleft = false;
     var xmlHttp;
     function submit() {
         if (window.ActiveXObject) {
@@ -89,13 +103,25 @@
 
     function addText(text, is_response) {
         var oldText = CKEDITOR.instances.chatarea.getData();
+        oldText = oldText.substr(0, oldText.length - 7);
+        if (is_response && checkSystem() != 'ios' && checkSystem() != 'android') {
+            if (showleft == true) {
+                oldText = oldText.replace('nonurl', 'http://www.shareditor.com/uploads/media/default/0001/01/thumb_416_default_big.png');
+                jQuery('#rabbit-left').css('display', 'none');
+                showleft = false;
+            } else {
+                oldText = oldText.replace('http://www.shareditor.com/uploads/media/default/0001/01/thumb_416_default_big.png', 'nonurl');
+                jQuery('#rabbit-left').css('display', 'block');
+                showleft = true;
+            }
+        }
         var prefix = '';
         if (is_response) {
-            prefix = "<div style='color: blue; text-align: left; padding: 5px;'>机器人: "
+            prefix = "<div style='color: blue; text-align: left; padding: 5px;'>小二兔: "
         } else {
             prefix = "<div style='color: darkgreen; text-align: right; padding: 5px;'>我: "
         }
-        CKEDITOR.instances.chatarea.setData(oldText + "" + prefix + text + "</div>");
+        CKEDITOR.instances.chatarea.setData(oldText + "" + prefix + text + "</div></div>");
 
         window.setTimeout(scrollDown, 50);
     }
@@ -128,12 +154,23 @@
 <div class="row">
     <div class="col-sm-2 col-xs-1"></div>
     <div class="col-sm-4 col-xs-10">
+        <div id="rabbit-left" style="position: absolute;left: -50px; top: 400px;display: none;"><img width="50px" height="62px" src="http://www.shareditor.com/uploads/media/default/0001/01/thumb_415_default_big.png"/></div>
         <div class="row">
-            <textarea id="chatarea">
-                <div style='color: blue; text-align: left; padding: 5px;'>机器人: 喂，大哥您好，您终于肯跟我聊天了,来侃侃呗,我来者不拒!</div>
-                <div style='color: blue; text-align: left; padding: 5px;'>机器人: 啥?你问我怎么这么聪明会聊天?因为我刚刚吃了一堆影视剧字幕!</div>
+            <textarea id="chatarea" style="background-color: #00A6C7">
+                <div id="container-div" style="padding:10px;padding-top: 50px;
+                background-image:url(http://www.shareditor.com/uploads/media/default/0001/01/thumb_416_default_big.png);
+                background-repeat:no-repeat;
+                background-position:left top;
+                background-blend-mode:normal;
+                background-attachment:fixed;
+                background-size:61px 50px;
+                background-position: 20px 0px">
+                    <div style='color: blue; text-align: left; padding: 5px;'>小二兔: 喂，大哥您好，您终于肯跟我聊天了,来侃侃呗,我来者不拒!</div>
+                    <div style='color: blue; text-align: left; padding: 5px;'>小二兔: 啥?你问我怎么这么聪明会聊天?因为我刚刚吃了一堆影视剧字幕!</div>
+                </div>
             </textarea>
         </div>
+
         <div id="info" style="color: #FFFFFF; height:20px;"></div>
         <br />
         <div class="row">
@@ -201,19 +238,7 @@
 
 {#http://docs.cksource.com/ckeditor_api/symbols/CKEDITOR.config.html#}
 <script type="text/javascript">
-    var checkSystem = function () {
-        var uaMap = {
-            'android': /Android/i,
-            'ios': /(?:iPhone|iPad)/i
-        };
-        var ua = window.navigator.userAgent;
-        for (var i in uaMap) {
-            if (uaMap[i].test(ua)) {
-                return i;
-            }
-        }
-        return null;
-    };
+
 
     if (checkSystem() == 'ios' || checkSystem() == 'android') {
         CKEDITOR.replace('chatarea',
@@ -236,6 +261,8 @@
                     allowedContent: true
                 });
     }
+
+    CKEDITOR.addCss('body{margin:0px;}');
 </script>
 
 {#cnzz统计#}
