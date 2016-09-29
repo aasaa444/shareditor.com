@@ -11,6 +11,7 @@
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
+
     <!-- 可选的Bootstrap主题文件（一般不用引入） -->
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
@@ -22,7 +23,11 @@
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+
     <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+
+    <link rel="stylesheet" href="/lrtk.css">
+    <script src="/lrtk.js"></script>
 
     {% if app.request.host != 'localhost' %}
         <script>
@@ -47,6 +52,8 @@
 </head>
 
 <body>
+
+<div id="top"></div>
 
 <!--推送百度url-->
 {% if app.request.host != 'localhost' %}
