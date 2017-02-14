@@ -134,30 +134,46 @@
             <br/>
 
             <div class="row">
-                <div class="col-sm-3">
-                    <a href="https://github.com/warmheartli"
-                           onclick="_czc.push(['_trackEvent', 'github链接', '点击']);"
-                        >
-                        <div class="fa fa-github fa-3x" style="margin-top: 40px;"></div>
+
+                <div class="col-sm-8">
+                    <h4>
+                        官方微信公众号
+                    </h4>
+                    <a href="http://{{ app.request.httphost }}/images/weixinpub.jpg">
+                        <img src="http://{{ app.request.httphost }}/images/weixinpub.jpg" width="90%" height="90%" style=""/>
                     </a>
                 </div>
 
-                <div class="col-sm-3">
-                    <a href="http://weibo.com/chuangwanglaile"
+                <div class="col-sm-1">
+                    <div class="row">
+                        <a href="https://github.com/warmheartli"
+                           onclick="_czc.push(['_trackEvent', 'github链接', '点击']);"
+                        >
+                            <div class="fa fa-github fa-3x" style="margin-top: 20px;"></div>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <a href="http://weibo.com/chuangwanglaile"
                            onclick="_czc.push(['_trackEvent', 'weibo链接', '点击']);"
                         >
-                        <div class="fa fa-weibo fa-3x" style="margin-top: 40px;"></div>
+                            <div class="fa fa-weibo fa-3x" style="margin-top: 20px;"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <hr/>
+            <div class="row">
+                <div class="col-sm-12">
+                    <a href="http://www.shareditor.com/blogshow/?blogId=112" target="_blank"
+                       onclick="_czc.push(['_trackEvent', '广告1', '点击']);"
+                    >
+                        <img src="http://www.shareditor.com/uploads/media/default/0001/01/ffe221bd081bcfda7b84df03bb0a5ef527c0238d.jpeg" width="100%" height="100%" style=""/>
                     </a>
                 </div>
-                <div class="col-sm-2"></div>
             </div>
-            <hr/>
-            <h4>
-                官方微信公众号
-            </h4>
-            <a href="http://{{ app.request.httphost }}/images/weixinpub.jpg">
-                <img src="http://{{ app.request.httphost }}/images/weixinpub.jpg" width="90%" height="90%" style=""/>
-            </a>
+
 
             <hr/>
             <h4>
@@ -237,6 +253,16 @@
                        onclick="_czc.push(['_trackEvent', '全部系列', '点击', '{{ tag.name }}']);"
                     >{{ tag.name }}</a></h6>
             {% endfor %}
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <a href="http://www.shareditor.com/blogshow/?blogId=112" target="_blank"
+                       onclick="_czc.push(['_trackEvent', '广告1', '点击']);"
+                    >
+                        <img src="http://www.shareditor.com/uploads/media/default/0001/01/ffe221bd081bcfda7b84df03bb0a5ef527c0238d.jpeg" width="100%" height="100%" style=""/>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="col-xs-1"></div>
     </div>
