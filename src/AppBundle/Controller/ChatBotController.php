@@ -22,6 +22,9 @@ class ChatBotController extends Controller
     public function queryAction(Request $request)
     {
         $q = $request->get('input');
+        if ($q == '机器学习资料') {
+            return new Response('链接: https://pan.baidu.com/s/1nuL8Lfz 密码: eqtt');
+        }
         $opts = array(
             'http'=>array(
                 'method'=>"GET",
