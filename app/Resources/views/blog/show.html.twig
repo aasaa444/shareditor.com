@@ -60,26 +60,26 @@
                         {{ blogpost.body|raw }}
                     </div>
 
-                    <div class="row">
-                        <div class="ds-share" data-thread-key="{{ blogpost.id }}" data-title="{{ blogpost.title }}"
-                             data-images="http://{{ app.request.httphost }}/uploads/media/default/0001/01/thumb_{{ blogpost.image.id }}_default_small.{{ blogpost.image.extension }}"
-                             data-content="{{ blogpost.abstract }}" data-url="{{ app.request.uri }}">
-                            <div class="ds-share-inline">
-                                <ul class="ds-share-icons-16">
+                    {#<div class="row">#}
+                        {#<div class="ds-share" data-thread-key="{{ blogpost.id }}" data-title="{{ blogpost.title }}"#}
+                             {#data-images="http://{{ app.request.httphost }}/uploads/media/default/0001/01/thumb_{{ blogpost.image.id }}_default_small.{{ blogpost.image.extension }}"#}
+                             {#data-content="{{ blogpost.abstract }}" data-url="{{ app.request.uri }}">#}
+                            {#<div class="ds-share-inline">#}
+                                {#<ul class="ds-share-icons-16">#}
 
-                                    <li data-toggle="ds-share-icons-more"><a class="ds-more"
-                                                                             href="javascript:void(0);">分享到：</a></li>
-                                    <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-                                    <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-                                    <li><a href="javascript:void(0);" class="ds-renren" data-service="renren">人人网</a>
-                                    </li>
-                                    <li><a href="javascript:void(0);" class="ds-wechat" data-service="wechat">微信</a>
-                                    </li>
+                                    {#<li data-toggle="ds-share-icons-more"><a class="ds-more"#}
+                                                                             {#href="javascript:void(0);">分享到：</a></li>#}
+                                    {#<li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>#}
+                                    {#<li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>#}
+                                    {#<li><a href="javascript:void(0);" class="ds-renren" data-service="renren">人人网</a>#}
+                                    {#</li>#}
+                                    {#<li><a href="javascript:void(0);" class="ds-wechat" data-service="wechat">微信</a>#}
+                                    {#</li>#}
 
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                                {#</ul>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</div>#}
                     <div class="row">
                         <div class="row">
                             <div class="col-sm-6 col-xs-6">
