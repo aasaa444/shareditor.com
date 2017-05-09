@@ -33,7 +33,7 @@ class ChatBotController extends Controller
         );
         $context = stream_context_create($opts);
         $clientIp = $request->getClientIp();
-        $response = file_get_contents('http://127.0.0.1:8765/?q=' . urlencode($q) . '&clientIp=' . $clientIp, false, $context);
+        $response = file_get_contents('http://10.162.223.224:8765/?q=' . urlencode($q) . '&clientIp=' . $clientIp, false, $context);
         $res = json_decode($response, true);
         $total = $res['total'];
         $result = '';
